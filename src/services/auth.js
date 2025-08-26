@@ -22,7 +22,7 @@ api.interceptors.response.use((response) => response, (error) => {
 
 export const auth = {
   login: async (email, password) => {
-    const response = await api.post('/user/sign_in', { email, password })
+    const response = await api.post('/user/sign_in', { user: { email, password } })
     const { token } = response.data
     localStorage.setItem('token', token)
     return response.data;
@@ -30,6 +30,7 @@ export const auth = {
 
   logout: () => {
     localStorage.removeItem('token')
+    localStorage.removeItem('user')
   },
 
   isAuthenticated: () => {
