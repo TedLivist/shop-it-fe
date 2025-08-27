@@ -23,9 +23,6 @@ const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     const response = await auth.login(email, password);
     const { token, ...userData } = response; // Extract token, rest is user data
-
-    console.log(token)
-    console.log(userData)
     
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(userData));
@@ -35,9 +32,10 @@ const AuthProvider = ({ children }) => {
   };
   
   const logout = () => {
-    authService.logout();
+    auth.logout();
     localStorage.removeItem('user');
     setUser(null);
+    
   }
   
   return (
