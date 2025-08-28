@@ -1,19 +1,35 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/authContext";
 import { useNavigate } from "react-router-dom";
+import { useRole } from "../hooks/useRole";
 
 const Login = () => {
   const navigate = useNavigate()
   const { login, user } = useAuth()
+  const { getUserRole } = useRole()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   useEffect(() => {
     if(user) {
-      navigate("/")
+      const role = getUserRole()
+
+      switch(role) {
+        case 'brand':
+          navigate('/brand-dashboard')
+          break;
+        case 'customer':
+          navigate('/')
+          break;
+        case 'super_admin':
+          navigate('/admin')
+          break;
+        default:
+          navigate('/')
+      }
     }
-  }, [user, navigate])
+  }, [getUserRole, user, navigate])
 
   const handleLogin = async (e) => {
     e.preventDefault()
