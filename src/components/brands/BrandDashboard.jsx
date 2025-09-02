@@ -7,13 +7,21 @@ const BrandDashboard = () => {
 
   useEffect(() => {
     const fetchBrandProducts = async () => {
-      api
+      try {
+        const response = await api.get('/brand/products')
+        setProducts(response.data)
+      } catch (e) {
+        console.error(e)
+      }
     }
-  })
+
+    fetchBrandProducts()
+  }, [])
 
   return (
     <div>
       I am a seller
+      {console.log(products)}
     </div>
   );
 }
