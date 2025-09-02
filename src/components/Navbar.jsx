@@ -1,11 +1,13 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/authContext";
+import { useAuth } from "../contexts/AuthContext";
 import RoleGuard from "./RoleGuard";
+import { useCart } from "../contexts/cartContext";
 // import '../stylings/Navbar.css'
 
 const Navbar = () => {
   const navigate = useNavigate()
   const { user, logout } = useAuth()
+  const { getTotalItems } = useCart()
 
   const handleLogout = () => {
     logout()
@@ -19,6 +21,11 @@ const Navbar = () => {
       <RoleGuard allowedRoles={'brand'}>
         <NavLink to="/brand-dashboard" className="nav-link">B Dashboard</NavLink>
       </RoleGuard>
+      <div className="cart-icon">
+        <button>
+          Cart ({getTotalItems()})
+        </button>
+      </div>
 
       {/* <NavLink to="/manageDeadline" className="nav-link">Deadline</NavLink> */}
       {/* <NavLink to="/withdrawal" className="nav-link">Withdrawal</NavLink> */}

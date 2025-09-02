@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import Homepage from './components/Homepage'
 import { useRole } from './hooks/useRole'
 import BrandDashboard from './components/brands/BrandDashboard'
+import Cart from './components/Cart'
 
 function App() {
   const { userRole } = useRole()
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={< Homepage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/cart" element={<Cart />} />
 
         {userRole === 'brand' && (
           <Route path="/brand-dashboard" element={<BrandDashboard />} />
