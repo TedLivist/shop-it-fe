@@ -7,18 +7,29 @@ const BrandDashboard = () => {
   const navigate = useNavigate()
   const [products, setProducts] = useState([])
 
+  const fetchBrandProducts = async () => {
+    try {
+      const response = await api.get('/brand/products')
+      setProducts(response.data)
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   useEffect(() => {
-    const fetchBrandProducts = async () => {
+    fetchBrandProducts()
+  }, [])
+
+  const handleDelete = async (productId) => {
+    if(confirm('Are you sure you want to delete this product?')) {
       try {
-        const response = await api.get('/brand/products')
-        setProducts(response.data)
+        await api.delete(`/brand/products/${productId}`)
+        fetchBrandProducts()
       } catch (e) {
         console.error(e)
       }
     }
-
-    fetchBrandProducts()
-  }, [])
+  }
 
   return (
     <div>
@@ -36,6 +47,9 @@ const BrandDashboard = () => {
             price={product.price}
             stock={product.stock}
           />
+          <button onClick={() => handleDelete(product.id)}>
+            Delete
+          </button>
         </div>
       ))} 
     </div>
