@@ -6,6 +6,7 @@ import Homepage from './components/Homepage'
 import { useRole } from './hooks/useRole'
 import BrandDashboard from './components/brands/BrandDashboard'
 import Cart from './components/Cart'
+import NewProductForm from './components/brands/NewProductForm'
 
 function App() {
   const { userRole } = useRole()
@@ -20,6 +21,10 @@ function App() {
 
         {userRole === 'brand' && (
           <Route path="/brand-dashboard" element={<BrandDashboard />} />
+        )}
+
+        {userRole === 'brand' && (
+          <Route path="/products/new" element={<NewProductForm />} />
         )}
         
         {userRole === 'super_admin' && (

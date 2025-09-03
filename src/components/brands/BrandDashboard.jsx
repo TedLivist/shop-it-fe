@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import api from "../../services/auth";
 import ProductItem from "../common/ProductItem";
+import { useNavigate } from "react-router-dom";
 
 const BrandDashboard = () => {
-
+  const navigate = useNavigate()
   const [products, setProducts] = useState([])
 
   useEffect(() => {
@@ -22,7 +23,10 @@ const BrandDashboard = () => {
   return (
     <div>
       I am a seller
-      
+      <button onClick={() => navigate('/products/new')}>
+        Add product
+      </button>
+
       {products && products.map((product) => (
         <div>
           <ProductItem
