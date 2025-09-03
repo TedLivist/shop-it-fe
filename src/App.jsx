@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
 import Login from './components/Login'
 import Navbar from './components/Navbar'
@@ -30,6 +30,8 @@ function App() {
         {userRole === 'super_admin' && (
           <Route path="/admin" element={<AdminPanel />} />
         )}
+
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   )
