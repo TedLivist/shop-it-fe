@@ -39,7 +39,8 @@ const BrandDashboard = () => {
       </button>
 
       {products && products.map((product) => (
-        <div>
+        <div key={product.id}>
+          <div>{product.status}</div>
           <ProductItem
             name={product.name}
             image_url={product.image_url}
@@ -47,6 +48,9 @@ const BrandDashboard = () => {
             price={product.price}
             stock={product.stock}
           />
+          <button onClick={() => navigate(`/products/${product.id}/edit`)}>
+            Edit
+          </button>
           <button onClick={() => handleDelete(product.id)}>
             Delete
           </button>

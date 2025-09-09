@@ -35,7 +35,7 @@ const Homepage = () => {
       )}
       I am the dashboard
       {products && products.map((product) => (
-        <div>
+        <div key={product.id}>
           <ProductItem
             name={product.name}
             image_url={product.image_url}
