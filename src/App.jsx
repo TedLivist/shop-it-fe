@@ -9,6 +9,7 @@ import Cart from './components/Cart'
 import NewProductForm from './components/brands/NewProductForm'
 import EditProductForm from './components/brands/EditProductForm'
 import { useAuth } from './contexts/AuthContext'
+import Orders from './components/brands/Orders'
 
 function App() {
   const { loading } = useAuth()
@@ -27,15 +28,12 @@ function App() {
         <Route path="/cart" element={<Cart />} />
 
         {userRole === 'brand' && (
-          <Route path="/brand-dashboard" element={<BrandDashboard />} />
-        )}
-
-        {userRole === 'brand' && (
-          <Route path="/products/new" element={<NewProductForm />} />
-        )}
-
-        {userRole === 'brand' && (
-          <Route path="/products/:productId/edit" element={<EditProductForm />} />
+          <>
+            <Route path="/brand-dashboard" element={<BrandDashboard />} />
+            <Route path="/products/new" element={<NewProductForm />} />
+            <Route path="/products/:productId/edit" element={<EditProductForm />} />
+            <Route path="/orders" element={<Orders />} />
+          </>
         )}
         
         {userRole === 'super_admin' && (

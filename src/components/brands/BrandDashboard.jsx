@@ -34,6 +34,7 @@ const BrandDashboard = () => {
   return (
     <div>
       I am a seller
+      <button onClick={() => navigate('/orders')}>View orders</button>
       <button onClick={() => navigate('/products/new')}>
         Add product
       </button>
