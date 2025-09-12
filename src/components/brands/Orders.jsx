@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import api from "../../services/auth";
+import { useNavigate } from "react-router-dom";
 
 const Orders = () => {
+  const navigate = useNavigate()
   const [orderItems, setOrderItems] = useState([])
   const [statusFilter, setStatusFilter] = useState('')
   const statusList = ['pending', 'processing', 'delivered']
@@ -26,6 +28,12 @@ const Orders = () => {
     return orderItems.filter(item => item.status === statusFilter)
   }, [orderItems, statusFilter])
 
+  const handleOrderItemView = (orderItem) => {
+    navigate(`/orderItem/${orderItem.id}`, {
+      state: { orderItem }
+    })
+  }
+
   return (
     <div>
       Orders...
@@ -49,15 +57,15 @@ const Orders = () => {
       ) : (
         filterOrderItems.map((orderItem) => (
           <div key={orderItem.id}>
-            {orderItem.id} |
-            {orderItem.order.delivery_address} |
-            {orderItem.order.delivery_phone_number} |
-            {orderItem.order.delivery_recipient_name} |
             {orderItem.product.name} |
             {orderItem.product.image_url} |
             {orderItem.quantity} |
             {orderItem.status} |
             {orderItem.unit_price} |
+
+            <button onClick={() => handleOrderItemView(orderItem)}>
+              View order
+            </button>
           </div>
         )))}
     </div>

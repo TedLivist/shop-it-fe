@@ -10,6 +10,7 @@ import NewProductForm from './components/brands/NewProductForm'
 import EditProductForm from './components/brands/EditProductForm'
 import { useAuth } from './contexts/AuthContext'
 import Orders from './components/brands/Orders'
+import OrderItem from './components/common/OrderItem'
 
 function App() {
   const { loading } = useAuth()
@@ -26,6 +27,7 @@ function App() {
         <Route exact path="/" element={< Homepage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/orderItem/:id" element={<OrderItem />} />
 
         {userRole === 'brand' && (
           <>

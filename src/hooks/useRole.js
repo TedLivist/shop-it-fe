@@ -20,5 +20,23 @@ export const useRole = () => {
     return Array.isArray(roles) ? roles.includes(userRole) : roles === userRole;
   };
 
-  return { hasRole, isRole, getUserRole, userRole: getUserRole() }  
+  const canAccessOrderItem = (orderItem) => {
+    if (!user || !orderItem) return false;
+
+    if (orderItem.product.brand_id === user.brand_id) {
+      return true;
+    }
+
+    if (orderItem.order.customer_id === user.customer_id) {
+      return true;
+    }
+
+    // if (user.super_admin_id) {
+    //   return true;
+    // }
+
+    return false;
+  }
+
+  return { hasRole, isRole, getUserRole, userRole: getUserRole(), canAccessOrderItem }  
 }
