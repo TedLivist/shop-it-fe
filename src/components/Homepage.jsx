@@ -108,7 +108,9 @@ const Homepage = () => {
               price={product.price}
               stock={product.stock}
             />
-            <button onClick={() => addToCart(product)}>Add to Cart</button>
+            <RoleGuard allowedRoles={['guest', 'customer']}>
+              <button onClick={() => addToCart(product)}>Add to Cart</button>
+            </RoleGuard>
           </div>
         ))}
       </div>

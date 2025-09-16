@@ -21,11 +21,13 @@ const Navbar = () => {
       <RoleGuard allowedRoles={'brand'}>
         <NavLink to="/brand-dashboard" className="nav-link">B Dashboard</NavLink>
       </RoleGuard>
-      <div className="cart-icon">
-        <button>
-          Cart ({getTotalItems()})
-        </button>
-      </div>
+      <RoleGuard allowedRoles={['guest', 'customer']}>
+        <div className="cart-icon">
+          <button>
+            Cart ({getTotalItems()})
+          </button>
+        </div>
+      </RoleGuard>
 
       {/* <NavLink to="/manageDeadline" className="nav-link">Deadline</NavLink> */}
       {/* <NavLink to="/withdrawal" className="nav-link">Withdrawal</NavLink> */}

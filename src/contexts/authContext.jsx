@@ -35,7 +35,6 @@ const AuthProvider = ({ children }) => {
     auth.logout();
     localStorage.removeItem('user');
     setUser(null);
-    
   }
   
   return (
