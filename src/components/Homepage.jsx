@@ -3,6 +3,7 @@ import { useAuth } from "../contexts/AuthContext";
 import api from "../services/auth";
 import RoleGuard from "./RoleGuard";
 import { useCart } from "../contexts/cartContext";
+import ProductItem from "./common/ProductItem";
 
 const Homepage = () => {
   const { user } = useAuth()
@@ -34,16 +35,17 @@ const Homepage = () => {
       )}
       I am the dashboard
       {products && products.map((product) => (
-        <div>
-          <div>{product.name}</div>
-          {console.log(product)}
-          <div><img src={product.image_url} alt="product-img" /></div>
-          <div>{product.description}</div>
-          <div>N{product.price}</div>
-          <div>stock: {product.stock}</div>
+        <div key={product.id}>
+          <ProductItem
+            name={product.name}
+            image_url={product.image_url}
+            description={product.description}
+            price={product.price}
+            stock={product.stock}
+          />
           <button onClick={() => addToCart(product)}>Add to Cart</button>
         </div>
-      ))}   
+      ))}
 
 
     </div>

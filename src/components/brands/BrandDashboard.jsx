@@ -1,19 +1,63 @@
 import { useEffect, useState } from "react";
 import api from "../../services/auth";
+import ProductItem from "../common/ProductItem";
+import { useNavigate } from "react-router-dom";
 
 const BrandDashboard = () => {
-
+  const navigate = useNavigate()
   const [products, setProducts] = useState([])
 
-  useEffect(() => {
-    const fetchBrandProducts = async () => {
-      api
+  const fetchBrandProducts = async () => {
+    try {
+      const response = await api.get('/brand/products')
+      setProducts(response.data)
+    } catch (e) {
+      console.error(e)
     }
-  })
+  }
+
+  useEffect(() => {
+    fetchBrandProducts()
+  }, [])
+
+  const handleDelete = async (productId) => {
+    if(confirm('Are you sure you want to delete this product?')) {
+      try {
+        await api.delete(`/brand/products/${productId}`)
+        fetchBrandProducts()
+      } catch (e) {
+        console.error(e)
+      }
+    }
+  }
 
   return (
     <div>
       I am a seller
+      <button onClick={() => navigate('/orders')}>View orders</button>
+      <button onClick={() => navigate('/products/new')}>
+        Add product
+      </button>
+      <button onClick={() => navigate('/metrics')}>Metrics</button>
+
+      {products && products.map((product) => (
+        <div key={product.id}>
+          <div>{product.status}</div>
+          <ProductItem
+            name={product.name}
+            image_url={product.image_url}
+            description={product.description}
+            price={product.price}
+            stock={product.stock}
+          />
+          <button onClick={() => navigate(`/products/${product.id}/edit`)}>
+            Edit
+          </button>
+          <button onClick={() => handleDelete(product.id)}>
+            Delete
+          </button>
+        </div>
+      ))} 
     </div>
   );
 }
