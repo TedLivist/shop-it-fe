@@ -60,7 +60,6 @@ const OrderItem = () => {
         {updating && <span>Updating...</span>}
       </div>
 
-      <h2>Order Item #{orderItem.id}</h2>
       <p>Product: {orderItem.product.name}</p>
       <p>Quantity: {orderItem.quantity}</p>
       <p>Status: {status}</p>

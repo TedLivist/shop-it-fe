@@ -38,6 +38,7 @@ const BrandDashboard = () => {
       <button onClick={() => navigate('/products/new')}>
         Add product
       </button>
+      <button onClick={() => navigate('/metrics')}>Metrics</button>
 
       {products && products.map((product) => (
         <div key={product.id}>

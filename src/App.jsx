@@ -11,6 +11,7 @@ import EditProductForm from './components/brands/EditProductForm'
 import { useAuth } from './contexts/AuthContext'
 import Orders from './components/brands/Orders'
 import OrderItem from './components/common/OrderItem'
+import Metrics from './components/brands/Metrics'
 
 function App() {
   const { loading } = useAuth()
@@ -35,6 +36,7 @@ function App() {
             <Route path="/products/new" element={<NewProductForm />} />
             <Route path="/products/:productId/edit" element={<EditProductForm />} />
             <Route path="/orders" element={<Orders />} />
+            <Route path="/metrics" element={<Metrics />} />
           </>
         )}
         
