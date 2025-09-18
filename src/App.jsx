@@ -12,6 +12,7 @@ import { useAuth } from './contexts/AuthContext'
 import Orders from './components/brands/Orders'
 import OrderItem from './components/common/OrderItem'
 import Metrics from './components/brands/Metrics'
+import Profile from './components/Profile'
 
 function App() {
   const { loading } = useAuth()
@@ -29,6 +30,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/orderItem/:id" element={<OrderItem />} />
+        <Route path='profile' element={<Profile />} />
 
         {userRole === 'brand' && (
           <>

@@ -21,6 +21,9 @@ const Navbar = () => {
       <RoleGuard allowedRoles={'brand'}>
         <NavLink to="/brand-dashboard" className="nav-link">B Dashboard</NavLink>
       </RoleGuard>
+      <RoleGuard allowedRoles={'customer'}>
+        <NavLink to="/profile" className="nav-link">Profile</NavLink>
+      </RoleGuard>
       <RoleGuard allowedRoles={['guest', 'customer']}>
         <div className="cart-icon">
           <button>
