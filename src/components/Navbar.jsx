@@ -26,8 +26,8 @@ const Navbar = () => {
       </RoleGuard>
       <RoleGuard allowedRoles={['guest', 'customer']}>
         <div className="cart-icon">
-          <button>
-            Cart ({getTotalItems()})
+          <button onClick={() => navigate('/cart')}>
+            Cart ({getTotalItems() ? getTotalItems() : 0})
           </button>
         </div>
       </RoleGuard>
