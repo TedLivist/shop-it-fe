@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import api from '../services/auth';
+import Orders from './customers/Orders';
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState('delivery-address');
@@ -74,6 +75,11 @@ const Profile = () => {
           <li>
             <button onClick={() => setActiveTab('delivery-address')}>
               Delivery Addresses
+            </button>
+          </li>
+          <li>
+            <button onClick={() => setActiveTab('customer-orders')}>
+              Orders
             </button>
           </li>
           <li>
@@ -195,6 +201,12 @@ const Profile = () => {
                 )}
               </div>
             )}
+          </div>
+        )}
+
+        {activeTab === 'customer-orders' && (
+          <div>
+            <Orders />
           </div>
         )}
 
