@@ -36,9 +36,14 @@ const Navbar = () => {
       {/* <NavLink to="/withdrawal" className="nav-link">Withdrawal</NavLink> */}
 
       {!user && (
-        <button className="nav-link" onClick={() => navigate('/login')}>
-          Login
-        </button>
+        <div>
+          <button className="nav-link" onClick={() => navigate('/login')}>
+            Login
+          </button>
+          <button className="nav-link" onClick={() => navigate('/signup')}>
+            Signup
+          </button>
+        </div>
       )}
       {user && (
         <button className="nav-link" onClick={handleLogout}>
