@@ -36,6 +36,17 @@ const AuthProvider = ({ children }) => {
 
     return response.data;
   };
+
+  const verifyOtp = async (email, otp) => {
+    const response = await auth.verifyOtp(email, otp);
+    const { token, ...userData } = response;
+
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(userData));
+    setUser(userData);
+    
+    return response.data;
+  };
   
   const logout = () => {
     auth.logout();
@@ -44,7 +55,7 @@ const AuthProvider = ({ children }) => {
   };
   
   return (
-    <AuthContext.Provider value={{ user, login, signup, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, signup, verifyOtp, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );
