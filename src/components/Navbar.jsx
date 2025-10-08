@@ -21,19 +21,29 @@ const Navbar = () => {
       <RoleGuard allowedRoles={'brand'}>
         <NavLink to="/brand-dashboard" className="nav-link">B Dashboard</NavLink>
       </RoleGuard>
-      <div className="cart-icon">
-        <button>
-          Cart ({getTotalItems()})
-        </button>
-      </div>
+      <RoleGuard allowedRoles={'customer'}>
+        <NavLink to="/profile" className="nav-link">Profile</NavLink>
+      </RoleGuard>
+      <RoleGuard allowedRoles={['guest', 'customer']}>
+        <div className="cart-icon">
+          <button onClick={() => navigate('/cart')}>
+            Cart ({getTotalItems() ? getTotalItems() : 0})
+          </button>
+        </div>
+      </RoleGuard>
 
       {/* <NavLink to="/manageDeadline" className="nav-link">Deadline</NavLink> */}
       {/* <NavLink to="/withdrawal" className="nav-link">Withdrawal</NavLink> */}
 
       {!user && (
-        <button className="nav-link" onClick={() => navigate('/login')}>
-          Login
-        </button>
+        <div>
+          <button className="nav-link" onClick={() => navigate('/login')}>
+            Login
+          </button>
+          <button className="nav-link" onClick={() => navigate('/signup')}>
+            Signup
+          </button>
+        </div>
       )}
       {user && (
         <button className="nav-link" onClick={handleLogout}>

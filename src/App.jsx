@@ -12,6 +12,9 @@ import { useAuth } from './contexts/AuthContext'
 import Orders from './components/brands/Orders'
 import OrderItem from './components/common/OrderItem'
 import Metrics from './components/brands/Metrics'
+import Profile from './components/Profile'
+import Signup from './components/Signup'
+import VerifyOTP from './components/VerifyOTP'
 
 function App() {
   const { loading } = useAuth()
@@ -27,8 +30,11 @@ function App() {
       <Routes>
         <Route exact path="/" element={< Homepage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/orderItem/:id" element={<OrderItem />} />
+        <Route path='profile' element={<Profile />} />
+        <Route path='/verifyOtp' element={<VerifyOTP />} />
 
         {userRole === 'brand' && (
           <>

@@ -28,6 +28,19 @@ export const auth = {
     return response.data;
   },
 
+  signup: async (firstName, lastName, email, password, passwordConfirmation, userRole) => {
+    const response = await api.post('/user/sign_up', {
+      user: { first_name: firstName, last_name: lastName, email, password, password_confirmation: passwordConfirmation, user_role: userRole } })
+    return response.data
+  },
+
+  verifyOtp: async (email, otp) => {
+    const response = await api.post('/user/verify_otp', { user: { email, otp } })
+    const { token } = response.data
+    localStorage.setItem('token', token)
+    return response.data;
+  },
+
   logout: () => {
     localStorage.removeItem('token')
     localStorage.removeItem('user')
