@@ -30,15 +30,21 @@ const AuthProvider = ({ children }) => {
     
     return response.data;
   };
+
+  const signup = async (firstName, lastName, email, password, passwordConfirmation, userRole) => {
+    const response = await auth.signup(firstName, lastName, email, password, passwordConfirmation, userRole);
+
+    return response.data;
+  };
   
   const logout = () => {
     auth.logout();
     localStorage.removeItem('user');
     setUser(null);
-  }
+  };
   
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, signup, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );
